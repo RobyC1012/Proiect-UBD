@@ -1,0 +1,13 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Proiect UBD ~backend~",
+  "main": "server.js",
+  "author": "Clintoc Robert",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "express": "^4.18.1",
+    "next": "^12.3.1"
+  }
+}
