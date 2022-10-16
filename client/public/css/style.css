@@ -5,37 +5,79 @@ body{
     background-attachment: fixed;
 }
 
+.login-form{
+  position: absolute;
+  /*background-color: rgba(4, 68, 95, 0.5);*/
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  padding: 40px;
+  max-width: 500px;
+  max-height: 370px;
+  width: auto;
+  height: 100%;
+  margin-top: 11%;
+  margin-left: 35%;
+}
+
+.login-form h1{
+  text-align: center;
+  margin-bottom: 10px;
+  font: 36px Baochi;
+}
+
+.login-form hr{
+  height: 1px;
+}
+
+.login-form button{
+  width: 100%;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  margin-top: 15px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
 .input-group{
-    position: relative;
-    padding-bottom: 25px;
-  }
-  .input{
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-    font: inherit;
-    font-display: swap;
-    color:#fff;
-    background-color: #ffffff;
-    outline: 2px solid #fff;
-    width: 576px;
-  }
-  .input-label{
-    position: absolute;
-    top: 0;
-    left: 0;
-    transform: translate(10px, 10px);
-    transition: transform .25s;
-  }
-  .input:focus+.input-label,
-  .input:valid+.input-label{
-    transform: translate(10px, -14px) scale(.85);
-    color: #007bff;
-    padding-inline: 5px;
-    background-color: #fff;
-    border-radius: 5px;
-  }
-  .input:is(:focus, :valid){
-    outline-color: #007bff;
-    color: rgb(16,16,16);
-  }
+  position: relative;
+  padding-bottom: 25px;
+}
+.input{
+  padding: 10px;
+  /*border: none;*/
+  font: inherit;
+  font-display: swap;
+  color:#fff;
+  background-color: #ffffff;
+  /*outline: 2px solid rgb(0, 0, 0);*/
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  width: 450px;
+}
+.input-label{
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(10px, 10px);
+  transition: transform .25s;
+}
+.input:focus+.input-label,
+.input:valid+.input-label{
+  transform: translate(10px, -14px) scale(.85);
+  padding-inline: 5px;
+  background-color: #fff;
+  border-radius: 5px;
+}
+.input:is(:focus, :valid){
+  /*outline-color: #007bff;*/
+  outline: none; 
+  color: rgb(16,16,16);
+}
+
+.loginf a{
+  color: #000000;
+  text-decoration: none;
+}
