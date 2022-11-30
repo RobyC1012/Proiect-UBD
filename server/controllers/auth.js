@@ -20,10 +20,8 @@ export const login = async (req, res) => {
         const user = await Users.findOne({ email }).exec();
         console.log("LOGIN USER", user);
         if (!user) return res.status(400).send("No user found");
-        console.log("password no match");
         const match = await comparePassword(password, user.password);
         if (!match) return res.status(400).send("Wrong password");
-        console.log("password match");
         // create signed jwt
         const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
             expiresIn: "7d",
@@ -43,7 +41,7 @@ export const login = async (req, res) => {
 export const logout = async (req, res) => {
     try {
         res.clearCookie("token");
-        res.json({ message: "Signout success" });
+        res.json({ message: "Logout success." });
     } catch (err) {
         console.log(err);
     }
@@ -90,5 +88,15 @@ export const register = async (req, res) => {
     } catch (err) {
       console.log(err);
       return res.status(400).send("Error. Try again.");
+    }
+  };
+
+  export const currentUser = async (req, res) => {
+    try {
+      const user = await Users.findById(req.auth._id).select("-password").exec();
+      console.log("CURRENT_USER", user);
+      return res.json({ ok: true });
+    } catch (err) {
+      console.log(err);
     }
   };

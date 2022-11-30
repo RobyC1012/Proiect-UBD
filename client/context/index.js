@@ -1,6 +1,7 @@
 import { useReducer, createContext, useEffect } from "react";
 import axios from "axios";
 import { useRouter, userRouter } from "next/router";
+import { toast } from "react-toastify";
 
 // initial state
 const intialState = {
@@ -55,6 +56,7 @@ const Provider = ({ children }) => {
               dispatch({ type: "LOGOUT" });
               window.localStorage.removeItem("user");
               router.push("/login");
+              toast("You are not authorized. Please login!");
             })
             .catch((err) => {
               console.log("AXIOS INTERCEPTORS ERR", err);
@@ -66,14 +68,6 @@ const Provider = ({ children }) => {
     }
   );
 
-  useEffect(() => {
-    const getCsrfToken = async () => {
-      const { data } = await axios.get("/api/csrf-token");
-      // console.log("CSRF", data);
-      axios.defaults.headers["X-CSRF-Token"] = data.getCsrfToken;
-    };
-    getCsrfToken();
-  }, []);
 
   return (
     <Context.Provider value={{ state, dispatch }}>{children}</Context.Provider>

@@ -23,14 +23,9 @@ const Index = () => {
     // router
     const router = useRouter();
 
-    /*useEffect(() => {
-        if (user !== null) router.push("/");
-    }, [user]);*/
-
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // console.table({ name, email, password });
         try {
             setLoading(true);
             const { data } = await axios.post(`/api/register`, {
@@ -38,7 +33,6 @@ const Index = () => {
             email,
             password,
             });
-            // console.log("REGISTER RESPONSE", data);
             toast("Registration success. Please login.");
             setEmail("");
             setName("");

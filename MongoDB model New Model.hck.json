@@ -13,7 +13,8 @@
                     "GUID": "3a0e95a2-8179-4b17-b095-6c27e8aa1c8e",
                     "error": {},
                     "childRelationships": [
-                        "7cb68592-ca0a-4c17-be49-4ce8a16f39ba"
+                        "7cb68592-ca0a-4c17-be49-4ce8a16f39ba",
+                        "d44b5f89-cd54-4c2d-b1d9-989bfdeb3a35"
                     ]
                 },
                 {
@@ -46,12 +47,75 @@
                     "isActivated": true,
                     "type": "objectId",
                     "GUID": "cdfdfedd-4b27-4851-9630-b7e700481138",
+                    "error": {}
+                },
+                {
+                    "name": "pi",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "type": "numeric",
+                    "GUID": "b6e7b5b7-db06-4c83-b286-c4c880b4a255",
+                    "error": {}
+                },
+                {
+                    "name": "birthdate",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "type": "date",
+                    "primaryKey": false,
+                    "GUID": "6882be93-9faf-4f11-b569-e8df4d8278d9",
+                    "error": {}
+                },
+                {
+                    "name": "education_form",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "type": "string",
+                    "GUID": "0e88566a-b383-44c0-8f0d-1ace501396fe",
+                    "error": {}
+                },
+                {
+                    "name": "address",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "type": "string",
+                    "GUID": "df2a69c2-29be-473e-a1a1-d3a18336cf90",
+                    "error": {}
+                },
+                {
+                    "name": "role",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "type": "string",
+                    "GUID": "f6eecb18-c124-4623-9008-518552ab8920",
+                    "error": {}
+                },
+                {
+                    "name": "spec_id",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "type": "objectId",
+                    "GUID": "fb5f2878-6b65-46e0-bf41-ecf2c750fe4d",
                     "error": {},
                     "relationshipType": "Foreign Key",
-                    "foreignCollection": "51a61e31-17b1-48e3-a6f1-aa1bc1946369",
+                    "foreignCollection": "d5177b69-6cba-43ef-b1d4-4bee3cac81f4",
                     "foreignField": [
-                        "51a61e31-17b1-48e3-a6f1-aa1bc1946369",
-                        "593d8e0e-5d61-4ecf-8e5f-486ee735d582"
+                        "d5177b69-6cba-43ef-b1d4-4bee3cac81f4",
+                        "f622aa98-4313-4cd5-9df6-8da0688d8c54"
+                    ]
+                },
+                {
+                    "name": "course_id",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "type": "objectId",
+                    "GUID": "e95f8268-45af-4186-9f3a-046e939c99c2",
+                    "error": {},
+                    "relationshipType": "Foreign Key",
+                    "foreignCollection": "053a761a-1e1a-4d4a-8763-3090b5adfc53",
+                    "foreignField": [
+                        "053a761a-1e1a-4d4a-8763-3090b5adfc53",
+                        "6067d8e3-5e40-4b5d-ac16-53aab60e8c7e"
                     ]
                 }
             ],
@@ -76,61 +140,6 @@
             "bucketId": "5a7eeae6-6d79-45de-93b8-c560805fa71b"
         },
         {
-            "collectionName": "Teachers",
-            "type": "object",
-            "properties": [
-                {
-                    "name": "_id",
-                    "hackoladeMeta": {},
-                    "isActivated": true,
-                    "type": "objectId",
-                    "GUID": "4b454791-49e2-4e6b-b965-57ca4bfd0c6d",
-                    "error": {}
-                },
-                {
-                    "name": "name",
-                    "hackoladeMeta": {},
-                    "isActivated": true,
-                    "type": "string",
-                    "GUID": "3d310d68-a040-4191-b1fc-7d18ec7f8ade",
-                    "error": {}
-                },
-                {
-                    "name": "user_id",
-                    "hackoladeMeta": {},
-                    "isActivated": true,
-                    "type": "objectId",
-                    "GUID": "b8b3cd26-e07e-42b2-9408-a8bfbc7e959a",
-                    "error": {},
-                    "relationshipType": "Foreign Key",
-                    "foreignCollection": "b032abd6-b173-49eb-962c-5bb084b2ec85",
-                    "foreignField": [
-                        "b032abd6-b173-49eb-962c-5bb084b2ec85",
-                        "3a0e95a2-8179-4b17-b095-6c27e8aa1c8e"
-                    ]
-                }
-            ],
-            "definitions": {
-                "type": "definitions",
-                "properties": [],
-                "GUID": "d7835c6e-62db-4280-ab17-ab4ab4d69d31"
-            },
-            "isActivated": true,
-            "additionalProperties": false,
-            "validationLevel": "Off",
-            "validationAction": "Warn",
-            "storageEngineName": "WiredTiger",
-            "collectionUsers": [],
-            "indexes": [],
-            "collation": {},
-            "sharding": {
-                "unique": true,
-                "collation": "null"
-            },
-            "GUID": "c7e9375f-112b-4680-83a5-c6d2a3aa34e9",
-            "bucketId": "5a7eeae6-6d79-45de-93b8-c560805fa71b"
-        },
-        {
             "collectionName": "Courses",
             "type": "object",
             "properties": [
@@ -142,7 +151,8 @@
                     "GUID": "6067d8e3-5e40-4b5d-ac16-53aab60e8c7e",
                     "error": {},
                     "childRelationships": [
-                        "91290529-5b24-40c4-85bd-3f240da3ef63"
+                        "57e1c622-f3a0-4242-a70e-ba4af48d54ea",
+                        "c9d2e664-01e9-4280-82ce-05b0e66abbaa"
                     ]
                 },
                 {
@@ -168,20 +178,12 @@
                     "type": "string",
                     "GUID": "e1b163a0-049a-4332-9c5e-7e1c9e8b292b",
                     "error": {},
+                    "relationshipType": "Foreign Key",
                     "foreignCollection": "d5177b69-6cba-43ef-b1d4-4bee3cac81f4",
                     "foreignField": [
                         "d5177b69-6cba-43ef-b1d4-4bee3cac81f4",
                         "f622aa98-4313-4cd5-9df6-8da0688d8c54"
-                    ],
-                    "relationshipType": "Foreign Key"
-                },
-                {
-                    "name": "teach_id",
-                    "hackoladeMeta": {},
-                    "isActivated": true,
-                    "type": "objectId",
-                    "GUID": "4a8dfc12-b149-4457-a4a7-c3779e1f3fad",
-                    "error": {}
+                    ]
                 }
             ],
             "definitions": {
@@ -205,103 +207,6 @@
             "bucketId": "5a7eeae6-6d79-45de-93b8-c560805fa71b"
         },
         {
-            "collectionName": "Students",
-            "type": "object",
-            "properties": [
-                {
-                    "name": "_id",
-                    "hackoladeMeta": {},
-                    "isActivated": true,
-                    "type": "objectId",
-                    "GUID": "593d8e0e-5d61-4ecf-8e5f-486ee735d582",
-                    "error": {},
-                    "childRelationships": [
-                        "36a6fe3c-1251-44f4-ab9a-703f2567f690",
-                        "4140a79d-2a9b-4719-83c9-c0dd97c6c5d0"
-                    ]
-                },
-                {
-                    "name": "pi",
-                    "hackoladeMeta": {},
-                    "isActivated": true,
-                    "type": "string",
-                    "GUID": "ba77e9ad-d49b-4177-bc71-de2f0a2e3a59",
-                    "error": {}
-                },
-                {
-                    "name": "num_id",
-                    "hackoladeMeta": {},
-                    "isActivated": true,
-                    "type": "numeric",
-                    "GUID": "58b60c82-991f-42c2-8744-bab4fa108bb8",
-                    "error": {}
-                },
-                {
-                    "name": "age",
-                    "hackoladeMeta": {},
-                    "isActivated": true,
-                    "type": "numeric",
-                    "GUID": "5918c3a3-5cac-4e0b-92b3-3ff0d661bac6",
-                    "error": {}
-                },
-                {
-                    "name": "birthdate",
-                    "hackoladeMeta": {},
-                    "isActivated": true,
-                    "type": "date",
-                    "primaryKey": false,
-                    "GUID": "6b488466-9b03-41cc-a4c7-7d385336c838",
-                    "error": {}
-                },
-                {
-                    "hackoladeMeta": {},
-                    "isActivated": true,
-                    "type": "string",
-                    "GUID": "576c62be-10de-46d8-b4a4-b3a8ad94ce03",
-                    "name": "education_form",
-                    "error": {}
-                },
-                {
-                    "name": "spec_id",
-                    "hackoladeMeta": {},
-                    "isActivated": true,
-                    "type": "objectId",
-                    "GUID": "b380b047-8d9e-4757-8d05-1e20bff51616",
-                    "error": {},
-                    "childRelationships": [
-                        "c7c4311b-4f05-48c8-af0a-db243f6583db"
-                    ]
-                },
-                {
-                    "name": "address",
-                    "hackoladeMeta": {},
-                    "isActivated": true,
-                    "type": "string",
-                    "GUID": "bf317b55-1946-4293-b5af-117a514c973f",
-                    "error": {}
-                }
-            ],
-            "definitions": {
-                "type": "definitions",
-                "properties": [],
-                "GUID": "7d57ffca-33b4-4529-b86f-1e1d388f7b18"
-            },
-            "isActivated": true,
-            "additionalProperties": false,
-            "validationLevel": "Off",
-            "validationAction": "Warn",
-            "storageEngineName": "WiredTiger",
-            "collectionUsers": [],
-            "indexes": [],
-            "collation": {},
-            "sharding": {
-                "unique": true,
-                "collation": "null"
-            },
-            "GUID": "51a61e31-17b1-48e3-a6f1-aa1bc1946369",
-            "bucketId": "5a7eeae6-6d79-45de-93b8-c560805fa71b"
-        },
-        {
             "collectionName": "Grades",
             "type": "object",
             "properties": [
@@ -314,18 +219,27 @@
                     "error": {}
                 },
                 {
+                    "name": "grade",
+                    "hackoladeMeta": {},
+                    "isActivated": true,
+                    "type": "numeric",
+                    "GUID": "ecbc817d-dbe9-434a-bb5a-cab3c1dc677d",
+                    "error": {}
+                },
+                {
                     "name": "stud_id",
                     "hackoladeMeta": {},
                     "isActivated": true,
                     "type": "objectId",
                     "GUID": "9127a8bb-b8ef-4743-bcb8-75cbecc946e5",
                     "error": {},
-                    "relationshipType": "Foreign Key",
-                    "foreignCollection": "51a61e31-17b1-48e3-a6f1-aa1bc1946369",
+                    "parentRelationship": "d44b5f89-cd54-4c2d-b1d9-989bfdeb3a35",
+                    "foreignCollection": "b032abd6-b173-49eb-962c-5bb084b2ec85",
                     "foreignField": [
-                        "51a61e31-17b1-48e3-a6f1-aa1bc1946369",
-                        "593d8e0e-5d61-4ecf-8e5f-486ee735d582"
-                    ]
+                        "b032abd6-b173-49eb-962c-5bb084b2ec85",
+                        "3a0e95a2-8179-4b17-b095-6c27e8aa1c8e"
+                    ],
+                    "relationshipType": "Foreign Key"
                 },
                 {
                     "name": "course_id",
@@ -340,14 +254,6 @@
                         "053a761a-1e1a-4d4a-8763-3090b5adfc53",
                         "6067d8e3-5e40-4b5d-ac16-53aab60e8c7e"
                     ]
-                },
-                {
-                    "name": "grade",
-                    "hackoladeMeta": {},
-                    "isActivated": true,
-                    "type": "numeric",
-                    "GUID": "ecbc817d-dbe9-434a-bb5a-cab3c1dc677d",
-                    "error": {}
                 }
             ],
             "definitions": {
@@ -381,14 +287,9 @@
                     "type": "objectId",
                     "GUID": "f622aa98-4313-4cd5-9df6-8da0688d8c54",
                     "error": {},
-                    "foreignCollection": "51a61e31-17b1-48e3-a6f1-aa1bc1946369",
-                    "foreignField": [
-                        "51a61e31-17b1-48e3-a6f1-aa1bc1946369",
-                        "b380b047-8d9e-4757-8d05-1e20bff51616"
-                    ],
-                    "relationshipType": "Foreign Key",
                     "childRelationships": [
-                        "60e77a33-d2dd-4347-8238-81390839796c"
+                        "f43287d5-8db7-45fd-8a1c-60a7c751bbf4",
+                        "b75d0328-f83b-4bde-a43a-b868c8b2091d"
                     ]
                 },
                 {
@@ -414,8 +315,11 @@
                     "type": "objectId",
                     "GUID": "d9e53fdd-4686-48e3-87b0-1e7b3c4b79f7",
                     "error": {},
-                    "childRelationships": [
-                        "629921ab-efcc-45bd-84e7-bab594ff8805"
+                    "relationshipType": "Foreign Key",
+                    "foreignCollection": "84cacc6d-a585-4eaf-849e-6fe7dba43f0a",
+                    "foreignField": [
+                        "84cacc6d-a585-4eaf-849e-6fe7dba43f0a",
+                        "337b31f0-76a5-4111-a4f0-a55444c17751"
                     ]
                 }
             ],
@@ -450,11 +354,8 @@
                     "GUID": "337b31f0-76a5-4111-a4f0-a55444c17751",
                     "name": "_id",
                     "error": {},
-                    "relationshipType": "Foreign Key",
-                    "foreignCollection": "d5177b69-6cba-43ef-b1d4-4bee3cac81f4",
-                    "foreignField": [
-                        "d5177b69-6cba-43ef-b1d4-4bee3cac81f4",
-                        "d9e53fdd-4686-48e3-87b0-1e7b3c4b79f7"
+                    "childRelationships": [
+                        "88d4ad9b-76fd-43a6-9096-6901a9a8d0b2"
                     ]
                 },
                 {
@@ -493,9 +394,7 @@
             "type": "bucket",
             "collectionIds": [
                 "b032abd6-b173-49eb-962c-5bb084b2ec85",
-                "c7e9375f-112b-4680-83a5-c6d2a3aa34e9",
                 "053a761a-1e1a-4d4a-8763-3090b5adfc53",
-                "51a61e31-17b1-48e3-a6f1-aa1bc1946369",
                 "11e2d3c7-1b4f-429f-ac6e-58fd1156e23c",
                 "d5177b69-6cba-43ef-b1d4-4bee3cac81f4",
                 "84cacc6d-a585-4eaf-849e-6fe7dba43f0a"
@@ -514,70 +413,7 @@
     "views": [],
     "relationships": [
         {
-            "name": "usr-stud",
-            "relationshipType": "Foreign Key",
-            "parentField": [
-                [
-                    "51a61e31-17b1-48e3-a6f1-aa1bc1946369",
-                    "593d8e0e-5d61-4ecf-8e5f-486ee735d582"
-                ]
-            ],
-            "parentCardinality": "0..1",
-            "childField": [
-                [
-                    "b032abd6-b173-49eb-962c-5bb084b2ec85",
-                    "cdfdfedd-4b27-4851-9630-b7e700481138"
-                ]
-            ],
-            "childCardinality": "1",
-            "GUID": "36a6fe3c-1251-44f4-ab9a-703f2567f690",
-            "parentCollection": "51a61e31-17b1-48e3-a6f1-aa1bc1946369",
-            "childCollection": "b032abd6-b173-49eb-962c-5bb084b2ec85"
-        },
-        {
-            "name": "stud-spec",
-            "relationshipType": "Foreign Key",
-            "parentField": [
-                [
-                    "51a61e31-17b1-48e3-a6f1-aa1bc1946369",
-                    "b380b047-8d9e-4757-8d05-1e20bff51616"
-                ]
-            ],
-            "parentCardinality": "1",
-            "childField": [
-                [
-                    "d5177b69-6cba-43ef-b1d4-4bee3cac81f4",
-                    "f622aa98-4313-4cd5-9df6-8da0688d8c54"
-                ]
-            ],
-            "childCardinality": "1",
-            "GUID": "c7c4311b-4f05-48c8-af0a-db243f6583db",
-            "parentCollection": "51a61e31-17b1-48e3-a6f1-aa1bc1946369",
-            "childCollection": "d5177b69-6cba-43ef-b1d4-4bee3cac81f4"
-        },
-        {
-            "name": "spec-fac",
-            "relationshipType": "Foreign Key",
-            "parentField": [
-                [
-                    "d5177b69-6cba-43ef-b1d4-4bee3cac81f4",
-                    "d9e53fdd-4686-48e3-87b0-1e7b3c4b79f7"
-                ]
-            ],
-            "parentCardinality": "n",
-            "childField": [
-                [
-                    "84cacc6d-a585-4eaf-849e-6fe7dba43f0a",
-                    "337b31f0-76a5-4111-a4f0-a55444c17751"
-                ]
-            ],
-            "childCardinality": "1",
-            "GUID": "629921ab-efcc-45bd-84e7-bab594ff8805",
-            "parentCollection": "d5177b69-6cba-43ef-b1d4-4bee3cac81f4",
-            "childCollection": "84cacc6d-a585-4eaf-849e-6fe7dba43f0a"
-        },
-        {
-            "name": "teach-usr",
+            "name": "users-grades",
             "relationshipType": "Foreign Key",
             "parentField": [
                 [
@@ -588,17 +424,59 @@
             "parentCardinality": "1",
             "childField": [
                 [
-                    "c7e9375f-112b-4680-83a5-c6d2a3aa34e9",
-                    "b8b3cd26-e07e-42b2-9408-a8bfbc7e959a"
+                    "11e2d3c7-1b4f-429f-ac6e-58fd1156e23c",
+                    "9127a8bb-b8ef-4743-bcb8-75cbecc946e5"
                 ]
             ],
-            "childCardinality": "0..1",
-            "GUID": "7cb68592-ca0a-4c17-be49-4ce8a16f39ba",
+            "childCardinality": "n",
+            "GUID": "d44b5f89-cd54-4c2d-b1d9-989bfdeb3a35",
             "parentCollection": "b032abd6-b173-49eb-962c-5bb084b2ec85",
-            "childCollection": "c7e9375f-112b-4680-83a5-c6d2a3aa34e9"
+            "childCollection": "11e2d3c7-1b4f-429f-ac6e-58fd1156e23c"
         },
         {
-            "name": "spec-cour",
+            "name": "spec-users",
+            "relationshipType": "Foreign Key",
+            "parentField": [
+                [
+                    "d5177b69-6cba-43ef-b1d4-4bee3cac81f4",
+                    "f622aa98-4313-4cd5-9df6-8da0688d8c54"
+                ]
+            ],
+            "parentCardinality": "1",
+            "childField": [
+                [
+                    "b032abd6-b173-49eb-962c-5bb084b2ec85",
+                    "fb5f2878-6b65-46e0-bf41-ecf2c750fe4d"
+                ]
+            ],
+            "childCardinality": "n",
+            "GUID": "f43287d5-8db7-45fd-8a1c-60a7c751bbf4",
+            "parentCollection": "d5177b69-6cba-43ef-b1d4-4bee3cac81f4",
+            "childCollection": "b032abd6-b173-49eb-962c-5bb084b2ec85"
+        },
+        {
+            "name": "courses-users",
+            "relationshipType": "Foreign Key",
+            "parentField": [
+                [
+                    "053a761a-1e1a-4d4a-8763-3090b5adfc53",
+                    "6067d8e3-5e40-4b5d-ac16-53aab60e8c7e"
+                ]
+            ],
+            "parentCardinality": "1",
+            "childField": [
+                [
+                    "b032abd6-b173-49eb-962c-5bb084b2ec85",
+                    "e95f8268-45af-4186-9f3a-046e939c99c2"
+                ]
+            ],
+            "childCardinality": "n",
+            "GUID": "57e1c622-f3a0-4242-a70e-ba4af48d54ea",
+            "parentCollection": "053a761a-1e1a-4d4a-8763-3090b5adfc53",
+            "childCollection": "b032abd6-b173-49eb-962c-5bb084b2ec85"
+        },
+        {
+            "name": "spec-courses",
             "relationshipType": "Foreign Key",
             "parentField": [
                 [
@@ -613,45 +491,13 @@
                     "e1b163a0-049a-4332-9c5e-7e1c9e8b292b"
                 ]
             ],
-            "childCardinality": "1..n",
-            "GUID": "60e77a33-d2dd-4347-8238-81390839796c",
+            "childCardinality": "n",
+            "GUID": "b75d0328-f83b-4bde-a43a-b868c8b2091d",
             "parentCollection": "d5177b69-6cba-43ef-b1d4-4bee3cac81f4",
             "childCollection": "053a761a-1e1a-4d4a-8763-3090b5adfc53"
         },
         {
-            "name": "teach-cour",
-            "relationshipType": "Foreign Key",
-            "parentField": [],
-            "parentCardinality": "1",
-            "childField": [],
-            "childCardinality": "n",
-            "GUID": "ad24ddb3-042d-4b0e-94b3-c2130088575f",
-            "parentCollection": "c7e9375f-112b-4680-83a5-c6d2a3aa34e9",
-            "childCollection": "053a761a-1e1a-4d4a-8763-3090b5adfc53"
-        },
-        {
-            "name": "stud-grades",
-            "relationshipType": "Foreign Key",
-            "parentField": [
-                [
-                    "51a61e31-17b1-48e3-a6f1-aa1bc1946369",
-                    "593d8e0e-5d61-4ecf-8e5f-486ee735d582"
-                ]
-            ],
-            "parentCardinality": "1",
-            "childField": [
-                [
-                    "11e2d3c7-1b4f-429f-ac6e-58fd1156e23c",
-                    "9127a8bb-b8ef-4743-bcb8-75cbecc946e5"
-                ]
-            ],
-            "childCardinality": "0..1",
-            "GUID": "4140a79d-2a9b-4719-83c9-c0dd97c6c5d0",
-            "parentCollection": "51a61e31-17b1-48e3-a6f1-aa1bc1946369",
-            "childCollection": "11e2d3c7-1b4f-429f-ac6e-58fd1156e23c"
-        },
-        {
-            "name": "courses-grades",
+            "name": "course-grades",
             "relationshipType": "Foreign Key",
             "parentField": [
                 [
@@ -666,10 +512,31 @@
                     "ad2d603a-b64c-4d02-a22c-f311b4685820"
                 ]
             ],
-            "childCardinality": "1..n",
-            "GUID": "91290529-5b24-40c4-85bd-3f240da3ef63",
+            "childCardinality": "1",
+            "GUID": "c9d2e664-01e9-4280-82ce-05b0e66abbaa",
             "parentCollection": "053a761a-1e1a-4d4a-8763-3090b5adfc53",
             "childCollection": "11e2d3c7-1b4f-429f-ac6e-58fd1156e23c"
+        },
+        {
+            "name": "faculty-spec",
+            "relationshipType": "Foreign Key",
+            "parentField": [
+                [
+                    "84cacc6d-a585-4eaf-849e-6fe7dba43f0a",
+                    "337b31f0-76a5-4111-a4f0-a55444c17751"
+                ]
+            ],
+            "parentCardinality": "1",
+            "childField": [
+                [
+                    "d5177b69-6cba-43ef-b1d4-4bee3cac81f4",
+                    "d9e53fdd-4686-48e3-87b0-1e7b3c4b79f7"
+                ]
+            ],
+            "childCardinality": "n",
+            "GUID": "88d4ad9b-76fd-43a6-9096-6901a9a8d0b2",
+            "parentCollection": "84cacc6d-a585-4eaf-849e-6fe7dba43f0a",
+            "childCollection": "d5177b69-6cba-43ef-b1d4-4bee3cac81f4"
         }
     ],
     "users": [],
@@ -677,9 +544,7 @@
     "idToNameHashTable": {
         "5a7eeae6-6d79-45de-93b8-c560805fa71b": "Proiect",
         "b032abd6-b173-49eb-962c-5bb084b2ec85": "Users",
-        "c7e9375f-112b-4680-83a5-c6d2a3aa34e9": "Teachers",
         "053a761a-1e1a-4d4a-8763-3090b5adfc53": "Courses",
-        "51a61e31-17b1-48e3-a6f1-aa1bc1946369": "Students",
         "11e2d3c7-1b4f-429f-ac6e-58fd1156e23c": "Grades",
         "d5177b69-6cba-43ef-b1d4-4bee3cac81f4": "Specialization",
         "84cacc6d-a585-4eaf-849e-6fe7dba43f0a": "Faculty",
@@ -687,41 +552,34 @@
         "574f4a5e-da56-41fa-9738-ad6ea0813b66": "email",
         "fdab3205-89f2-4705-9804-242528839e30": "password",
         "b8f3aa1a-f7c0-4d4a-9808-907a7ff27c5e": "name",
-        "593d8e0e-5d61-4ecf-8e5f-486ee735d582": "_id",
-        "ba77e9ad-d49b-4177-bc71-de2f0a2e3a59": "pi",
-        "58b60c82-991f-42c2-8744-bab4fa108bb8": "num_id",
-        "5918c3a3-5cac-4e0b-92b3-3ff0d661bac6": "age",
-        "6b488466-9b03-41cc-a4c7-7d385336c838": "birthdate",
-        "576c62be-10de-46d8-b4a4-b3a8ad94ce03": "education_form",
-        "b380b047-8d9e-4757-8d05-1e20bff51616": "spec_id",
-        "bf317b55-1946-4293-b5af-117a514c973f": "address",
         "49f722db-6a9f-4fc6-a4c9-62ce9d01804a": "_id",
         "f622aa98-4313-4cd5-9df6-8da0688d8c54": "_id",
         "337b31f0-76a5-4111-a4f0-a55444c17751": "_id",
-        "4b454791-49e2-4e6b-b965-57ca4bfd0c6d": "_id",
         "6067d8e3-5e40-4b5d-ac16-53aab60e8c7e": "_id",
-        "36a6fe3c-1251-44f4-ab9a-703f2567f690": "usr-stud",
         "cdfdfedd-4b27-4851-9630-b7e700481138": "stud_id",
-        "c7c4311b-4f05-48c8-af0a-db243f6583db": "stud-spec",
         "58476844-71b9-4ac1-a8ef-7ef6d429c46f": "name",
         "d9e53fdd-4686-48e3-87b0-1e7b3c4b79f7": "fac_id",
         "78383971-dd63-41f5-9fc6-15d70cbe054b": "name",
-        "629921ab-efcc-45bd-84e7-bab594ff8805": "spec-fac",
         "6a096b46-1175-4769-90b2-ca23e359831b": "name",
         "9b7907e7-bbeb-47af-9135-f06da30bef18": "semester",
-        "4a8dfc12-b149-4457-a4a7-c3779e1f3fad": "teach_id",
         "e1b163a0-049a-4332-9c5e-7e1c9e8b292b": "spec_id",
         "77607ce2-44e0-45ed-9313-c0f400d9936a": "years",
-        "3d310d68-a040-4191-b1fc-7d18ec7f8ade": "name",
-        "b8b3cd26-e07e-42b2-9408-a8bfbc7e959a": "user_id",
-        "7cb68592-ca0a-4c17-be49-4ce8a16f39ba": "teach-usr",
-        "60e77a33-d2dd-4347-8238-81390839796c": "spec-cour",
-        "ad24ddb3-042d-4b0e-94b3-c2130088575f": "teach-cour",
         "9127a8bb-b8ef-4743-bcb8-75cbecc946e5": "stud_id",
         "ad2d603a-b64c-4d02-a22c-f311b4685820": "course_id",
+        "b6e7b5b7-db06-4c83-b286-c4c880b4a255": "pi",
+        "6882be93-9faf-4f11-b569-e8df4d8278d9": "birthdate",
+        "0e88566a-b383-44c0-8f0d-1ace501396fe": "education_form",
+        "df2a69c2-29be-473e-a1a1-d3a18336cf90": "address",
+        "f6eecb18-c124-4623-9008-518552ab8920": "role",
+        "fb5f2878-6b65-46e0-bf41-ecf2c750fe4d": "spec_id",
+        "e95f8268-45af-4186-9f3a-046e939c99c2": "course_id",
         "ecbc817d-dbe9-434a-bb5a-cab3c1dc677d": "grade",
-        "4140a79d-2a9b-4719-83c9-c0dd97c6c5d0": "stud-grades",
-        "91290529-5b24-40c4-85bd-3f240da3ef63": "courses-grades"
+        "d44b5f89-cd54-4c2d-b1d9-989bfdeb3a35": "users-grades",
+        "f43287d5-8db7-45fd-8a1c-60a7c751bbf4": "spec-users",
+        "57e1c622-f3a0-4242-a70e-ba4af48d54ea": "courses-users",
+        "b75d0328-f83b-4bde-a43a-b868c8b2091d": "spec-courses",
+        "c9d2e664-01e9-4280-82ce-05b0e66abbaa": "course-grades",
+        "88d4ad9b-76fd-43a6-9096-6901a9a8d0b2": "faculty-spec"
     },
     "definitions": {
         "type": "definitions",
@@ -746,7 +604,7 @@
     "creationTS": "2022-10-17T13:51:23.673Z",
     "GUID": "411f0b8e-cb90-4839-b30e-d7818378b045",
     "isLineageEnabled": false,
-    "lastModifTS": "2022-10-25T14:31:10.695Z",
+    "lastModifTS": "2022-11-08T15:57:47.182Z",
     "persistenceSchemaVersion": "6",
     "isCreatedByPlugin": true,
     "pluginInformation": {
@@ -762,56 +620,40 @@
                 "erd": [
                     {
                         "GUID": "b032abd6-b173-49eb-962c-5bb084b2ec85",
-                        "x": 82.04615705658814,
-                        "y": 483.7770466786434,
-                        "width": 176,
-                        "height": 123,
-                        "color": {}
-                    },
-                    {
-                        "GUID": "c7e9375f-112b-4680-83a5-c6d2a3aa34e9",
-                        "x": 242.19538168314563,
-                        "y": 188.5161587315545,
-                        "width": 173,
-                        "height": 87,
+                        "x": 80,
+                        "y": 345.00292777304026,
+                        "width": 217,
+                        "height": 249,
                         "color": {}
                     },
                     {
                         "GUID": "053a761a-1e1a-4d4a-8763-3090b5adfc53",
-                        "x": 679.3438115399531,
-                        "y": 170.7819392202281,
+                        "x": 399.74941667215757,
+                        "y": 203.8742291131033,
                         "width": 173,
-                        "height": 123,
-                        "color": {}
-                    },
-                    {
-                        "GUID": "51a61e31-17b1-48e3-a6f1-aa1bc1946369",
-                        "x": 287.5315120717845,
-                        "y": 469.0646935694025,
-                        "width": 217,
-                        "height": 177,
+                        "height": 105,
                         "color": {}
                     },
                     {
                         "GUID": "11e2d3c7-1b4f-429f-ac6e-58fd1156e23c",
-                        "x": 515.8659049920392,
-                        "y": 347.1284879212134,
+                        "x": 395.3280002545121,
+                        "y": 382.35576425879003,
                         "width": 175,
                         "height": 105,
                         "color": {}
                     },
                     {
                         "GUID": "d5177b69-6cba-43ef-b1d4-4bee3cac81f4",
-                        "x": 666.3245601437231,
-                        "y": 504.9757344647802,
+                        "x": 652.5359776412764,
+                        "y": 470.8159513495546,
                         "width": 199,
                         "height": 105,
                         "color": {}
                     },
                     {
                         "GUID": "84cacc6d-a585-4eaf-849e-6fe7dba43f0a",
-                        "x": 688.7656272439974,
-                        "y": 648.4624524164548,
+                        "x": 684.5844837427077,
+                        "y": 598.2902709659676,
                         "width": 162,
                         "height": 69,
                         "color": {}
@@ -819,8 +661,8 @@
                 ],
                 "buckets": [
                     {
-                        "x": 42.04615705658814,
-                        "y": 130.7819392202281,
+                        "x": 40,
+                        "y": 163.8742291131033,
                         "GUID": "5a7eeae6-6d79-45de-93b8-c560805fa71b"
                     }
                 ],
