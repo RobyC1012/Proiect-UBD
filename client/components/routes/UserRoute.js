@@ -63,19 +63,42 @@ const UserRoute = ({ children }) => {
 
   return (
     <Layout style={{ minHeight: '100vh' }}>  
-    <Layout className="site-layout">
-      {!ok ? (
-        <SyncOutlined
-          spin
-          className="d-flex justify-content-center display-1 text-primary p-5"
-        />
-      ) : (
-          <Content style={{ margin: '16px 16px' }}>  
-              {children}
-          </Content>
-        )}     
-    </Layout>  
-  </Layout>
+     
+    <Layout>
+      <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
+        <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
+          <Menu.Item key="1" icon={<LineChartOutlined />}>
+            <Link href="/user">
+              <a>Dashboard</a>
+            </Link>
+          </Menu.Item>
+          <Menu.Item key="2" icon={<PieChartOutlined />}>
+            <Link href="/user/cashflow">
+              <a>Cashflow</a>
+            </Link>
+          </Menu.Item>
+          <Menu.Item key="3" icon={<HistoryOutlined />}>
+            <Link href="/user/history">
+              <a>History</a>
+            </Link>
+          </Menu.Item>
+          <Menu.Item key="4" icon={<SettingOutlined />}>
+            <Link href="/user/settings">
+              <a>Settings</a>
+            </Link>
+          </Menu.Item>
+        </Menu>
+      </Sider>
+      <Layout className="site-layout">
+        <Content style={{ margin: '0 16px' }}>
+          <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
+            {children}
+          </div>
+        </Content>
+        <Footer style={{ textAlign: 'center' }}>Created by <a href="">Robert</a></Footer>
+    </Layout>
+    </Layout>
+    </Layout>
   );
 };
 

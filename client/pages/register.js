@@ -9,6 +9,7 @@ import { SyncOutlined } from "@ant-design/icons";
 
 const { Content, Footer, Header, Sider } = Layout;
 
+
 const Index = () => {
     const [email, setEmail] = useState("");
     const [name, setName] = useState("");
@@ -46,7 +47,7 @@ const Index = () => {
     };
     
     return (
-        <Content style={{ padding: '0 0px' }}>
+        <main className="loginf">
             <div className="login-form2">
                 <h1> Register </h1>
                 <hr></hr>
@@ -83,7 +84,7 @@ const Index = () => {
                             />
                             <label htmlFor="password" className="input-label">Password</label>
                         </div>
-                        <div className="forgot-password loginf">
+                        <div className="forgot-password loginfrm">
                             <a href="#">Forgot password?</a>
                         </div>
                         <button type="submit" 
@@ -94,7 +95,7 @@ const Index = () => {
                     </form>
                 </div>
             </div>
-        </Content>
+        </main>
     );
 };
 

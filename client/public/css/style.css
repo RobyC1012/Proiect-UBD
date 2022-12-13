@@ -3,21 +3,7 @@ body{
     font-size: 14px;
 }
 
-/* background div */
-.background{
-  background-image: url("../img/background.jpg");
-  background-size: cover;
-  background-attachment: fixed;
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
 .login-form{
-  position: absolute;
-  /*background-color: rgba(4, 68, 95, 0.5);*/
   background-color: rgb(255, 255, 255);
   border-radius: 10px;
   padding: 40px;
@@ -25,13 +11,20 @@ body{
   max-height: 370px;
   width: auto;
   height: 100%;
-  margin-top: 11%;
-  margin-left: 35%;
+  margin-top: 5vh;
+}
+
+.loginf{
+  display: grid;
+  place-items: center;
+  background-image: url("../img/background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
 }
 
 .login-form2{
-  position: absolute;
-  /*background-color: rgba(4, 68, 95, 0.5);*/
   background-color: rgb(255, 255, 255);
   border-radius: 10px;
   padding: 40px;
@@ -39,8 +32,8 @@ body{
   max-height: 450px;
   width: auto;
   height: 100%;
-  margin-top: 11%;
-  margin-left: 35%;
+  margin-top: 5vh;
+
 }
 .login-form2 button{
   width: 100%;
@@ -111,7 +104,11 @@ body{
   color: rgb(16,16,16);
 }
 
-.loginf a{
+.loginfrm a{
   color: #000000;
   text-decoration: none;
+}
+
+.topnav{
+  padding-left: 10%;
 }

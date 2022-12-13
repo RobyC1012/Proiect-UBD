@@ -16,6 +16,11 @@ const TopNav = () => {
     const { user } = state;
 
     const router = useRouter();
+
+
+    /*useEffect(() => {
+        process.browser && setCurrent(window.location.pathname);
+    }, [process.browser && window.location.pathname]);*/
   
     const logout = async () => {
         const { data } = await axios.get("/api/logout");
