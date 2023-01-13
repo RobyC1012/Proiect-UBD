@@ -8,6 +8,8 @@ import {
     getData,
     register,
     currentUser,
+    getusers,
+    getuser,
 }
 from "../controllers/auth";
 import { requireSignin } from "../middlewares";
@@ -17,5 +19,7 @@ router.get("/logout", logout);
 router.get("/data", getData);
 router.post("/register", register);
 router.get("/current-user", requireSignin, currentUser);
+router.get("/getusers", getusers);
+router.get("/getuser/:id", getuser);
 
 module.exports = router;

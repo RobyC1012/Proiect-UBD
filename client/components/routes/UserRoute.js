@@ -1,16 +1,17 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { useRouter } from "next/router";
-import Link from "next/link";
-import TopNav from "../TopNav";
-import { Layout, Menu } from "antd";
-import { SyncOutlined, LineChartOutlined, PieChartOutlined, SettingOutlined, AppstoreOutlined, HistoryOutlined } from "@ant-design/icons";
-import { Context } from "../../context";
-import { useContext } from "react";
-import { LoginOutlined, CoffeeOutlined } from "@ant-design/icons";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import router from "next/router";
+import { useEffect, useState } from "react"
+import { useSelector } from "react-redux"
+import axios from "axios"
+import { useRouter } from "next/router"
+import Link from "next/link"
+import TopNav from "../TopNav"
+import { Layout, Menu, DropDown } from "antd"
+import { SyncOutlined, LineChartOutlined, PieChartOutlined, SettingOutlined, AppstoreOutlined, HistoryOutlined, UserOutlined } from "@ant-design/icons";
+import { Context } from "../../context"
+import { useContext } from "react"
+import { LoginOutlined, CoffeeOutlined } from "@ant-design/icons"
+import { toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
+import router from "next/router"
 
 TopNav.logout = async () => {
   const { data } = await axios.get("/api/logout");
@@ -24,8 +25,7 @@ const UserRoute = ({ children }) => {
   // state
   const [ok, setOk] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
-  const [current, setCurrent] = useState("");
-  
+  const [current, setCurrent] = useState("");  
 
   const { state, dispatch } = useContext(Context);
   const { user } = state;
@@ -35,7 +35,7 @@ const UserRoute = ({ children }) => {
 
   const onCollapse = collapsed => {
     console.log(collapsed);
-    if(collapsed){
+    if(!collapsed){
       setCollapsed(true);
     }else{
       setCollapsed(false);
@@ -45,9 +45,10 @@ const UserRoute = ({ children }) => {
 
   useEffect(() => {
     fetchUser();
+    const { pathname } = window.location;
+    const menu = pathname.split("/")[1];
+    setCurrent(menu);
   }, []);
-
-  
 
   const fetchUser = async () => {
     try {
@@ -63,41 +64,41 @@ const UserRoute = ({ children }) => {
 
   return (
     <Layout style={{ minHeight: '100vh' }}>  
-     
-    <Layout>
-      <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
-        <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
-          <Menu.Item key="1" icon={<LineChartOutlined />}>
-            <Link href="/user">
-              <a>Dashboard</a>
-            </Link>
-          </Menu.Item>
-          <Menu.Item key="2" icon={<PieChartOutlined />}>
-            <Link href="/user/cashflow">
-              <a>Cashflow</a>
-            </Link>
-          </Menu.Item>
-          <Menu.Item key="3" icon={<HistoryOutlined />}>
-            <Link href="/user/history">
-              <a>History</a>
-            </Link>
-          </Menu.Item>
-          <Menu.Item key="4" icon={<SettingOutlined />}>
-            <Link href="/user/settings">
-              <a>Settings</a>
-            </Link>
-          </Menu.Item>
-        </Menu>
-      </Sider>
-      <Layout className="site-layout">
-        <Content style={{ margin: '0 16px' }}>
-          <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
-            {children}
-          </div>
-        </Content>
-        <Footer style={{ textAlign: 'center' }}>Created by <a href="">Robert</a></Footer>
-    </Layout>
-    </Layout>
+      <TopNav/>
+      <Layout>
+        <Sider collapsible collapsed={!collapsed} onCollapse={onCollapse}>
+          <Menu theme="dark" selectedKeys={[current]} mode="inline" style={{margin:'-4px 0px'}}>
+            <Menu.Item key="dashboard" icon={<LineChartOutlined />}>
+              <Link href="/dashboard">
+                <a>Dashboard</a>
+              </Link>
+            </Menu.Item>
+            <Menu.Item key="cashflow" icon={<PieChartOutlined />}>
+              <Link href="/user/cashflow">
+                <a>Cashflow</a>
+              </Link>
+            </Menu.Item>
+            <Menu.Item key="history" icon={<HistoryOutlined />}>
+              <Link href="/user/history">
+                <a>History</a>
+              </Link>
+            </Menu.Item>
+            <Menu.Item key="administration" icon={<SettingOutlined />}>
+              <Link href="/administration">
+                <a>Administration</a>
+              </Link>
+            </Menu.Item>
+          </Menu>
+        </Sider>
+        <Layout className="site-layout">
+          <Content style={{ margin: '0 16px' }}>
+            <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
+              {children}
+            </div>
+          </Content>
+          <Footer style={{ textAlign: 'center' }}>Created by <a href="">Robert</a></Footer>
+        </Layout>
+      </Layout>
     </Layout>
   );
 };

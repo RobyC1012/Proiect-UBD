@@ -95,8 +95,26 @@ export const register = async (req, res) => {
     try {
       const user = await Users.findById(req.auth._id).select("-password").exec();
       console.log("CURRENT_USER", user);
-      return res.json({ ok: true });
+      return res.json({ ok: true , user });
     } catch (err) {
       console.log(err);
     }
   };
+
+export const getusers = async (req, res) => {
+  try{
+    const users = await Users.find().exec()
+    return res.json({ users })
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export const getuser = async (req, res) => {
+  try{
+    const user = await Users.findById(req.params.id).exec()
+    return res.json({ user })
+  } catch (err) {
+    console.log(err);
+  }
+}

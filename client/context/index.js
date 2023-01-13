@@ -1,6 +1,6 @@
-import { useReducer, createContext, useEffect } from "react";
+import { useReducer, createContext, useEffect, useState} from "react";
 import axios from "axios";
-import { useRouter, userRouter } from "next/router";
+import { useRouter} from "next/router";
 import { toast } from "react-toastify";
 
 // initial state
@@ -22,6 +22,7 @@ const rootReducer = (state, action) => {
       return state;
   }
 };
+
 
 // context provider
 const Provider = ({ children }) => {
@@ -55,8 +56,9 @@ const Provider = ({ children }) => {
               console.log("/401 error > logout");
               dispatch({ type: "LOGOUT" });
               window.localStorage.removeItem("user");
-              router.push("/login");
               toast("You are not authorized. Please login!");
+              router.push("/login");
+              
             })
             .catch((err) => {
               console.log("AXIOS INTERCEPTORS ERR", err);

@@ -1,11 +1,13 @@
 import { useState, useEffect, useContext } from 'react';
 import Link from 'next/link';
-import { Menu } from "antd";
-import { AppstoreOutlined } from "@ant-design/icons";
+import { Dropdown, Menu} from "antd";
+import { UserOutlined } from "@ant-design/icons";
 import { Context } from "../context";
 import { useRouter } from "next/router"
 import axios from "axios";
 import { toast } from "react-toastify";
+import { Header } from 'antd/lib/layout/layout';
+import SizeContext from 'antd/lib/config-provider/SizeContext';
 
 const { Item, Submenu } = Menu;
 
@@ -35,72 +37,41 @@ const TopNav = () => {
 
     
     return (
-        <Menu mode="horizontal" theme="dark" selectedKeys={[current]}>
-            <Item 
-                key="/"
-                onClick={(e) => setCurrent(e.key)}
-                icon={<AppstoreOutlined/>}
-            >
-                <Link href="/">
-                    <a>Home</a>
-                </Link>
-            </Item>
-            <Item
-                key="/home"
-                onClick={(e) => setCurrent(e.key)}
-                icon={<AppstoreOutlined/>}
-            >
-                <Link href="/home">
-                    <a>Home</a>
-                </Link>
-            </Item>
-            { user === null && (
-                <>
-            <Item
-                key="/login"
-                onClick={(e) => setCurrent(e.key)}
-                icon={<AppstoreOutlined/>}
-            >
-                <Link href="/login">
-                    <a>Login</a>
-                </Link>
-            </Item>
-            <Item
-                key="/register" 
-                onClick={(e) => setCurrent(e.key)}
-                icon={<AppstoreOutlined/>}
-            >
-                <Link href="/register">
-                    <a>Register</a>
-                </Link>
-            </Item>
+        <Header>
+            <span className="header-home"> Online Grading System </span>
+            {user ? (
+            <>
+            <Dropdown overlay={ 
+                <Menu>
+                    <Menu.Item key="0">
+                        <a href="/dashboard">Dashboard</a>
+                    </Menu.Item>
+                    <Menu.Item key="2" onClick={logout}>Logout</Menu.Item>
+                </Menu>
+            } trigger={['click']}>
+                <a className="dropdown" onClick={e => e.preventDefault()}>
+                    <UserOutlined style={{fontSize: '20px', color:'#A2ACBD'}} />
+                </a>
+            </Dropdown>
             </>
-            )}
-            { user !== null && (
+            ) : (
                 <>
-            <Item
-                key="/user"
-                onClick={(e) => setCurrent(e.key)}
-                icon={<AppstoreOutlined/>}
-            >
-                <Link href="/user">
-                    <a>Dashboard</a>
-                </Link>
-            </Item>
-            <Item
-                key="/logout"
-                onClick={(e) => {
-                    setCurrent(e.key);
-                    logout();
-                }}
-                icon={<AppstoreOutlined/>}
-            >
-                <a>Logout</a>
-            </Item>
-            </>
+                <Dropdown overlay={ 
+                    <Menu>
+                        <Menu.Item key="0">
+                            <a href="/login">Login</a>
+                        </Menu.Item>
+                    </Menu>
+                } trigger={['click']}>
+                    <a className="dropdown" onClick={e => e.preventDefault()}>
+                        <UserOutlined style={{fontSize: '20px', color:'#A2ACBD'}} />
+                    </a>
+                </Dropdown>
+                </>
             )}
 
-        </Menu>
+
+        </Header>
     );
 };
 

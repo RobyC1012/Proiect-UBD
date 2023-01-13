@@ -4,6 +4,11 @@ const { Schema } = mongoose;
 
 const userSchema = new Schema(
     {
+        studId:{
+            type: mongoose.ObjectId,
+            ref: "Student",
+            required: false,
+        },
         name: {
             type: String,
             trim: true,
@@ -20,10 +25,6 @@ const userSchema = new Schema(
             required: true,
             min: 6,
             max: 64,
-        },
-        stud_id: {
-            type: mongoose.ObjectId,
-            ref: "Student",
         },
         role: {
             type: [String],
