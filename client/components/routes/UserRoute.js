@@ -12,6 +12,7 @@ import { LoginOutlined, CoffeeOutlined } from "@ant-design/icons"
 import { toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import router from "next/router"
+import SubMenu from "antd/lib/menu/SubMenu"
 
 TopNav.logout = async () => {
   const { data } = await axios.get("/api/logout");
@@ -83,11 +84,30 @@ const UserRoute = ({ children }) => {
                 <a>History</a>
               </Link>
             </Menu.Item>
-            <Menu.Item key="administration" icon={<SettingOutlined />}>
+            <SubMenu key="submenu" icon={<SettingOutlined/>} title={
+              <span>
+                <span>Administration</span>
+              </span>
+            }>
+              <Menu.Item key="administration" icon={<SettingOutlined />}>
+                <Link href="/administration">
+                  <a>Admin Panel</a>
+                </Link>
+              </Menu.Item>
+              <Menu.Item key="specializations" icon={<LoginOutlined />}>
+                <Link href="/specializations">
+                  <a>Specializations</a>
+                </Link>
+              </Menu.Item>
+            </SubMenu>
+            {/*<Menu.Item key="administration" icon={<SettingOutlined />}>
               <Link href="/administration">
                 <a>Administration</a>
               </Link>
-            </Menu.Item>
+              <Link href="/administration">
+                <a>Administration</a>
+              </Link>
+            </Menu.Item>/*/}
           </Menu>
         </Sider>
         <Layout className="site-layout">

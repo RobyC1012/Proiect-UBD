@@ -4,7 +4,7 @@ const { createProxyMiddleware } = require("http-proxy-middleware")
 
 const dev = process.env.NODE_ENV !== "production";
 const app = next({dev});
-const handle = app.getRequestHandler();
+const handle = app.getRequestHandler(app);
 
 app
   .prepare()
@@ -23,6 +23,7 @@ app
     server.all("*", (req,res) => {
         return handle(req,res);
     });
+
 
     server.listen(2000, (err) => {
         if (err) throw err;

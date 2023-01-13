@@ -13,12 +13,13 @@ const { Content, Footer, Header, Sider } = Layout;
 const Index = () => {
     const [email, setEmail] = useState("");
     const [name, setName] = useState("");
+    const [lastName, setlastName] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
 
     //state
     const {
-        state:{ user },
+        state: { user },
         dispatch
     } = useContext(Context);
     // router
@@ -30,13 +31,15 @@ const Index = () => {
         try {
             setLoading(true);
             const { data } = await axios.post(`/api/register`, {
-            name,
-            email,
-            password,
+                name,
+                lastName,
+                email,
+                password,
             });
             toast("Registration success. Please login.");
             setEmail("");
             setName("");
+            setlastName("");
             setPassword("");
             setLoading(false);
             router.push("/");
@@ -45,7 +48,7 @@ const Index = () => {
             setLoading(false);
         }
     };
-    
+
     return (
         <main className="loginf">
             <div className="login-form2">
@@ -61,33 +64,43 @@ const Index = () => {
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
                             />
-                            <label htmlFor="name" className="input-label">Name</label>
+                            <label htmlFor="name" className="input-label">First Name</label>
                         </div>
                         <div className="input-group">
                             <input
-                            type="email"
-                            id="email"
-                            required className="input"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
+                                type="text"
+                                id="lastName"
+                                required className="input"
+                                value={lastName}
+                                onChange={(e) => setlastName(e.target.value)}
+                            />
+                            <label htmlFor="lastName" className="input-label">Last Name</label>
+                        </div>
+                        <div className="input-group">
+                            <input
+                                type="email"
+                                id="email"
+                                required className="input"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
                             />
                             <label htmlFor="email" className="input-label">Email address</label>
                         </div>
 
                         <div className="input-group">
                             <input
-                            type="password"
-                            id="password"
-                            required className="input"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
+                                type="password"
+                                id="password"
+                                required className="input"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
                             />
                             <label htmlFor="password" className="input-label">Password</label>
                         </div>
                         <div className="forgot-password loginfrm">
                             <a href="#">Forgot password?</a>
                         </div>
-                        <button type="submit" 
+                        <button type="submit"
                             className="btn btn-block btn-primary"
                             disabled={!email || !password || loading}>
                             {loading ? <SyncOutlined spin /> : "Submit"}

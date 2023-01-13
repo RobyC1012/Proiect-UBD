@@ -13,14 +13,23 @@ const studentSchema = new Schema(
             type: Date,
             required: true,
         },
-        educationForm: {
+        address: {
+            type: String,
+            trim: true, 
+            required: true,
+        },
+        city: {
             type: String,
             trim: true,
             required: true,
         },
-        address: {
+        country: {
             type: String,
-            trim: true, 
+            trim: true,
+            required: true,
+        },
+        postalCode: {
+            type: Number,
             required: true,
         },
         phone: {
@@ -28,6 +37,16 @@ const studentSchema = new Schema(
             trim: true,
             required: true,
         },
+        statut: {
+            type: String,
+            trim: true,
+            required: true,
+        },
+        user_id: {
+            type: Schema.Types.ObjectId,
+            ref: "User",
+            required: true,
+        }
 
     },
     { timestamps: true },

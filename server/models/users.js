@@ -4,12 +4,13 @@ const { Schema } = mongoose;
 
 const userSchema = new Schema(
     {
-        studId:{
-            type: mongoose.ObjectId,
-            ref: "Student",
-            required: false,
-        },
+    
         name: {
+            type: String,
+            trim: true,
+            required: true,
+        },
+        lastName: {
             type: String,
             trim: true,
             required: true,
@@ -30,8 +31,12 @@ const userSchema = new Schema(
             type: [String],
             trim: true,
             default: ["User"],
-            enum: ["User", "Student", "Teacher"],
+            enum: ["User", "Student", "Teacher", "Admin"],
         },
+        studId: {
+            type: Schema.Types.ObjectId,
+            ref: "Student",
+        },  
     },
     { timestamps: true },
 );

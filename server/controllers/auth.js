@@ -62,7 +62,7 @@ export const getData = async (req, res) => {
 export const register = async (req, res) => {
     try {
       // console.log(req.body);
-      const { name, email, password } = req.body;
+      const { name, lastName, email, password } = req.body;
       // validation
       if (!name) return res.status(400).send("Name is required");
       if (!password || password.length < 6) {
@@ -79,6 +79,7 @@ export const register = async (req, res) => {
       // register
       const user = new Users({
         name,
+        lastName,
         email,
         password: hashedPassword,
       });
