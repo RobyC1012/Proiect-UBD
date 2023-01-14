@@ -1,4 +1,5 @@
 import Users from "../models/users";
+import Student from "../models/students";
 import { hashPassword, comparePassword } from "../utils/auth";
 import jwt from "jsonwebtoken";
 import AWS from "aws-sdk";
@@ -114,7 +115,56 @@ export const getusers = async (req, res) => {
 export const getuser = async (req, res) => {
   try{
     const user = await Users.findById(req.params.id).exec()
-    return res.json({ user })
+    const stud = await Student.findById(user.studId).exec()
+    return res.json({ user, stud })
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export const updateuser = async (req, res) => {
+  try{
+    const user = await Users.findById(req.params.id).exec()
+    const student = await Student.findById(user.studId).exec()
+    const update = { 
+      name: req.body.name,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      role: req.body.role,
+    };
+    await user.updateOne(update).exec()
+
+    console.log("REQ:" + req.body)
+    
+    if(!student && (user.role == "Student" || req.body.role == "Student")){
+      const newStudent = new Student({
+        pi: "undefined",
+        birthDate: new Date(),
+        address: "undefined",
+        city: "undefined",
+        county: "undefined",
+        postalCode: 123456,
+        phone: "123456789",
+        statut: req.body.statut,
+      });
+      await newStudent.save();
+      user.studId = newStudent._id;
+      await user.save();
+    }
+    else{
+      const update2 = { 
+        pi: req.body.pi,
+        birthDate: req.body.birthDate,
+        address: req.body.address,
+        city: req.body.city,
+        county: req.body.county,
+        postalCode: req.body.postalCode,
+        phone: req.body.phone,
+        statut: req.body.statut,
+      };
+      await student.updateOne(update2).exec()
+    }
+    return res.json({ ok: true })  
   } catch (err) {
     console.log(err);
   }

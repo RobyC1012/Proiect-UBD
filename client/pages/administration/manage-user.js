@@ -10,6 +10,7 @@ const { Header, Footer, Content } = Layout
 
 const manageuser = () => {
     let [user, setUser] = useState([]);
+    let [stud, setStud] = useState([]);
 
 
     useEffect(() => {
@@ -23,21 +24,66 @@ const manageuser = () => {
         const id = urlParams.get('id');
         const { data } = await axios.get(`/api/getuser/${id}`)
         setUser(data.user)
+        setStud(data.stud)
     }
 
-    function getBDate() {
-        let date = new Date()
+    function getBDate(date) {
+        date = new Date(date)
         let day = date.getDate()
         let month = date.getMonth() + 1
         let year = date.getFullYear()
-        if (day < 10) 
+        if (day < 10)
             day = "0" + day
-        if (month < 10) 
+        if (month < 10)
             month = "0" + month
         return `${year}-${month}-${day}`
     }
 
-    let dateas = "2023-01-20"
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get('id');
+
+        if(user.role == "Student")
+        {
+            const { data } = await axios.put(`/api/updateuser/${id}`, {
+                name: document.getElementById("ufname").value,
+                lastName: document.getElementById("ulname").value,
+                email: document.getElementById("uemail").value,
+                role: document.getElementById("urole").value,
+                address: document.getElementById("saddress").value,
+                city: document.getElementById("scity").value,
+                county: document.getElementById("scounty").value,
+                postalCode: document.getElementById("spostalcode").value,
+                pi: document.getElementById("spi").value,
+                birthDate: document.getElementById("sbirthdate").value,
+                statut: document.getElementById("sstatut").value,
+                phone: document.getElementById("sphone").value
+            })
+            if (data.error) {
+                toast.error(data.error)
+            } else {
+                toast.success("Student updated")
+                window.location.reload()
+            }
+        }
+        else
+        {
+            const { data } = await axios.put(`/api/updateuser/${id}`, {
+                name: document.getElementById("ufname").value,
+                lastName: document.getElementById("ulname").value,
+                email: document.getElementById("uemail").value,
+                role: document.getElementById("urole").value,
+            })
+            if (data.error) {
+                toast.error(data.error)
+            } else {
+                toast.success("User updated")
+                window.location.reload()
+            }
+        }
+    }
+
     return (
         <Layout style={{ minHeight: '100vh' }}>
             <UserRoute>
@@ -56,14 +102,14 @@ const manageuser = () => {
                                         <div className="col-md-6">
                                             <div className="form-group">
                                                 <label>First Name</label>
-                                                <input type="text" className="form-control" placeholder="Company" defaultValue={user.name} />
+                                                <input id="ufname" type="text" className="form-control" placeholder="Company" defaultValue={user.name} />
                                             </div>
                                         </div>
 
                                         <div className="col-md-6">
                                             <div className="form-group">
                                                 <label>Last Name</label>
-                                                <input type="text" className="form-control" placeholder="Last Name" defaultValue={user.lastName} />
+                                                <input id="ulname" type="text" className="form-control" placeholder="Last Name" defaultValue={user.lastName} />
                                             </div>
                                         </div>
                                     </div>
@@ -71,86 +117,126 @@ const manageuser = () => {
                                         <div className="col-md-6 pr-1">
                                             <div className="form-group">
                                                 <label>Email address</label>
-                                                <input type="email" className="form-control" placeholder="Email" defaultValue={user.email} />
+                                                <input id="uemail" type="email" className="form-control" placeholder="Email" defaultValue={user.email} />
                                             </div>
                                         </div>
                                         <div className="col-md-6 pl-1">
                                             <div className="form-group">
                                                 <label>Roles</label>
-                                                <select className="form-control" id="exampleFormControlSelect1">
-                                                    <option>User</option>
-                                                    <option>Student</option>
-                                                    <option>Teacher</option>
-                                                    <option>Admin</option>
+                                                <select id="urole" className="form-control">
+                                                    { (user.role == "User") && (
+                                                        <>
+                                                        <option id="1" selected>User</option>
+                                                        <option id="2">Student</option>
+                                                        <option id="3">Teacher</option>
+                                                        <option id="4">Admin</option>
+                                                        </>
+                                                    )}
+                                                    { (user.role == "Student") && (
+                                                        <>
+                                                        <option id="1">User</option>
+                                                        <option id="2" selected>Student</option>
+                                                        <option id="3">Teacher</option>
+                                                        <option id="4">Admin</option>
+                                                        </>
+                                                    )}
+                                                    { (user.role == "Teacher") && (
+                                                        <>
+                                                        <option id="1">User</option>
+                                                        <option id="2">Student</option>
+                                                        <option id="3" selected>Teacher</option>
+                                                        <option id="4">Admin</option>
+                                                        </>
+                                                    )}
+                                                    { (user.role == "Admin") && (
+                                                        <>
+                                                        <option id="1">User</option>
+                                                        <option id="2">Student</option>
+                                                        <option id="3">Teacher</option>
+                                                        <option id="4" selected>Admin</option>
+                                                        </>
+                                                    )}
                                                 </select>
 
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="card-header">
-                                    <h2 className="card-title">Student Information</h2>
-                                </div>
-                                <div className="card-body">
-                                    <div className="row">
-                                        <div className="col-md-12">
-                                            <div className="form-group">
-                                                <label>Address</label>
-                                                <input type="text" className="form-control" placeholder="Home Address" defaultValue={user.address} />
-                                            </div>
+                                {(user.role == "Student") && (
+                                    <>
+                                        <div className="card-header">
+                                            <h2 className="card-title">Student Information</h2>
                                         </div>
-                                    </div>
-                                    <div className="row">
-                                        <div className="col-md-4 pr-1">
-                                            <div className="form-group">
-                                                <label>City</label>
-                                                <input type="text" className="form-control" placeholder="City" defaultValue={user.city} />
+                                        <div className="card-body">
+                                            <div className="row">
+                                                <div className="col-md-12">
+                                                    <div className="form-group">
+                                                        <label>Address</label>
+                                                        <input id="saddress" type="text" className="form-control" placeholder="Home Address" defaultValue={stud.address} />
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div className="col-md-4 px-1">
-                                            <div className="form-group">
-                                                <label>Country</label>
-                                                <input type="text" className="form-control" placeholder="Country" defaultValue={user.country} />
+                                            <div className="row">
+                                                <div className="col-md-4 pr-1">
+                                                    <div className="form-group">
+                                                        <label>City</label>
+                                                        <input id="scity" type="text" className="form-control" placeholder="City" defaultValue={stud.city} />
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-4 px-1">
+                                                    <div className="form-group">
+                                                        <label>County</label>
+                                                        <input id="scounty" type="text" className="form-control" placeholder="County" defaultValue={stud.county} />
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-4 pl-1">
+                                                    <div className="form-group">
+                                                        <label>Postal Code</label>
+                                                        <input id="spostalcode" type="number" className="form-control" placeholder="ZIP Code" defaultValue={stud.postalCode} />
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div className="col-md-4 pl-1">
-                                            <div className="form-group">
-                                                <label>Postal Code</label>
-                                                <input type="number" className="form-control" placeholder="ZIP Code" defaultValue={user.postalCode} />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="row">
-                                        <div className="col-md-6">
-                                            <div className="form-group">
-                                                <label>Parent Initial</label>
-                                                <input type="text" className="form-control" placeholder="Parent Initial" defaultValue="PI" />
-                                            </div>
-                                        </div>
+                                            <div className="row">
+                                                <div className="col-md-6">
+                                                    <div className="form-group">
+                                                        <label>Parent Initial</label>
+                                                        <input id="spi" type="text" className="form-control" placeholder="Parent Initial" defaultValue={stud.pi} />
+                                                    </div>
+                                                </div>
 
-                                        <div className="col-md-6">
-                                            <div className="form-group">
-                                                <label>Birth Day</label>
-                                                <input type="date" className="form-control" placeholder="Birth Date"  defaultValue={getBDate()} />
+                                                <div className="col-md-6">
+                                                    <div className="form-group">
+                                                        <label>Birth Day</label>
+                                                        <input id="sbirthdate" type="date" className="form-control" placeholder="Birth Date" defaultValue={getBDate(stud.birthDate)} />
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div className="row">
-                                        <div className="col-md-6 pr-1">
-                                            <div className="form-group">
-                                                <label>Statut</label>
-                                                <input type="text" className="form-control" placeholder="Statut" defaultValue="Buget" />
+                                            <div className="row">
+                                                <div className="col-md-6 pr-1">
+                                                    <div className="form-group">
+                                                        <label>Statut</label>
+                                                        <input id="sstatut" type="text" className="form-control" placeholder="Statut" defaultValue="Buget" />
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-6 pr-1">
+                                                    <div className="form-group">
+                                                        <label>Phone Number</label>
+                                                        <input id="sphone" type="text" className="form-control" placeholder="Phone" defaultValue={stud.phone} />
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div className="row">
-                                        <div className="update ml-auto mr-auto" style={{ marginTop: '15px' }}>
-                                            <button type="button" className="btn btn-primary btn-round" onClick={() => { }}>Update Profile</button>
-                                        </div>
-                                    </div>
 
+
+                                        </div>
+                                    </>
+                                )}
+                                <div className="row">
+                                    <div className="update ml-auto mr-auto" style={{ margin: '15px' }}>
+                                        <button type="submit" className="btn btn-primary btn-round" onClick={handleSubmit}>Update Profile</button>
+                                    </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </Content>

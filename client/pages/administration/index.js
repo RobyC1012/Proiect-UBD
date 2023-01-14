@@ -37,7 +37,8 @@ const Dashboard = () => {
 
                     {/* List of all users */}
                     <Table dataSource={users} bordered pagination={{pageSize: 10}}>
-                        <Table.Column title="Name" dataIndex="name" key="name" />
+                        <Table.Column title="Fisrt Name" dataIndex="name" key="name" />
+                        <Table.Column title="Last Name" dataIndex="lastName" key="lastName" />
                         <Table.Column title="Email" dataIndex="email" key="email" />
                         <Table.Column title="Role" dataIndex="role" key="role" />
                         <Table.Column title="Joined" dataIndex="createdAt" key="createdAt" />

@@ -23,7 +23,7 @@ const studentSchema = new Schema(
             trim: true,
             required: true,
         },
-        country: {
+        county: {
             type: String,
             trim: true,
             required: true,
@@ -40,12 +40,7 @@ const studentSchema = new Schema(
         statut: {
             type: String,
             trim: true,
-            required: true,
-        },
-        user_id: {
-            type: Schema.Types.ObjectId,
-            ref: "User",
-            required: true,
+            default:"Budget"
         }
 
     },
