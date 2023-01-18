@@ -3,6 +3,7 @@ import { Layout , Table} from "antd"
 import { useEffect, useState } from "react"
 import axios from "axios"
 import { toast } from "react-toastify"
+import { useRouter } from "next/router"
 
 
 const { Header, Footer, Content} = Layout
@@ -11,6 +12,8 @@ const { Header, Footer, Content} = Layout
 
 const Dashboard = () => {
     let [users, setUsers] = useState([]);
+
+    const router = useRouter()
 
     //fetch data
     useEffect(() => {
@@ -23,7 +26,7 @@ const Dashboard = () => {
     }
 
     const manage = (id) => {
-        window.location.href = `/administration/manage-user?id=${id}`
+        router.push(`/administration/manage-user?id=${id}`)
     }
 
 
@@ -36,7 +39,7 @@ const Dashboard = () => {
                     </div>
 
                     {/* List of all users */}
-                    <Table dataSource={users} bordered pagination={{pageSize: 10}}>
+                    <Table dataSource={users} bordered pagination={{pageSize: 10}} scroll={{x:100}}>
                         <Table.Column title="Fisrt Name" dataIndex="name" key="name" />
                         <Table.Column title="Last Name" dataIndex="lastName" key="lastName" />
                         <Table.Column title="Email" dataIndex="email" key="email" />

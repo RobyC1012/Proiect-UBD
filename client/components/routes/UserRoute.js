@@ -26,7 +26,7 @@ const UserRoute = ({ children }) => {
   // state
   const [ok, setOk] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
-  const [current, setCurrent] = useState("");  
+  const [current, setCurrent] = useState("");
 
   const { state, dispatch } = useContext(Context);
   const { user } = state;
@@ -36,9 +36,9 @@ const UserRoute = ({ children }) => {
 
   const onCollapse = collapsed => {
     console.log(collapsed);
-    if(!collapsed){
+    if (!collapsed) {
       setCollapsed(true);
-    }else{
+    } else {
       setCollapsed(false);
     }
   };
@@ -64,11 +64,11 @@ const UserRoute = ({ children }) => {
   };
 
   return (
-    <Layout style={{ minHeight: '100vh' }}>  
-      <TopNav/>
+    <Layout style={{ minHeight: '100vh' }}>
+      <TopNav />
       <Layout>
         <Sider collapsible collapsed={!collapsed} onCollapse={onCollapse}>
-          <Menu theme="dark" selectedKeys={[current]} mode="inline" style={{margin:'-4px 0px'}}>
+          <Menu theme="dark" selectedKeys={[current]} mode="inline" style={{ margin: '-4px 0px' }}>
             <Menu.Item key="dashboard" icon={<LineChartOutlined />}>
               <Link href="/dashboard">
                 <a>Dashboard</a>
@@ -84,7 +84,7 @@ const UserRoute = ({ children }) => {
                 <a>History</a>
               </Link>
             </Menu.Item>
-            <SubMenu key="submenu" icon={<SettingOutlined/>} title={
+            <SubMenu key="submenu" icon={<SettingOutlined />} title={
               <span>
                 <span>Administration</span>
               </span>
@@ -99,15 +99,17 @@ const UserRoute = ({ children }) => {
                   <a>Specializations</a>
                 </Link>
               </Menu.Item>
+              <Menu.Item key="courses" icon={<LoginOutlined />}>
+                <Link href="/courses">
+                  <a>Courses</a>
+                </Link>
+              </Menu.Item>
+              <Menu.Item key="teacher" icon={<LoginOutlined />}>
+                <Link href="/teacher">
+                  <a>Teachers</a>
+                </Link>
+              </Menu.Item>
             </SubMenu>
-            {/*<Menu.Item key="administration" icon={<SettingOutlined />}>
-              <Link href="/administration">
-                <a>Administration</a>
-              </Link>
-              <Link href="/administration">
-                <a>Administration</a>
-              </Link>
-            </Menu.Item>/*/}
           </Menu>
         </Sider>
         <Layout className="site-layout">
@@ -116,7 +118,7 @@ const UserRoute = ({ children }) => {
               {children}
             </div>
           </Content>
-          <Footer style={{ textAlign: 'center' }}>Created by <a href="">Robert</a></Footer>
+          <Footer style={{ textAlign: 'center' }}>Created by <a href="https://github.com/RobyC1012">Robert</a></Footer>
         </Layout>
       </Layout>
     </Layout>

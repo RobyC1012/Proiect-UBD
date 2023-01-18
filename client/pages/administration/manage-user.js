@@ -1,6 +1,7 @@
 import UserRoute from "../../components/routes/UserRoute"
 import { Layout, Table } from "antd"
 import { useEffect, useState } from "react"
+import { useRouter } from "next/router"
 import axios from "axios"
 import { toast } from "react-toastify"
 import { getNamedRouteRegex } from "next/dist/shared/lib/router/utils/route-regex"
@@ -12,6 +13,7 @@ const manageuser = () => {
     let [user, setUser] = useState([]);
     let [stud, setStud] = useState([]);
 
+    const router = useRouter()
 
     useEffect(() => {
         fetchUrl()
@@ -64,7 +66,8 @@ const manageuser = () => {
                 toast.error(data.error)
             } else {
                 toast.success("Student updated")
-                window.location.reload()
+                //window.location.reload()
+                router.back()
             }
         }
         else
@@ -78,8 +81,8 @@ const manageuser = () => {
             if (data.error) {
                 toast.error(data.error)
             } else {
+                router.back()
                 toast.success("User updated")
-                window.location.reload()
             }
         }
     }
