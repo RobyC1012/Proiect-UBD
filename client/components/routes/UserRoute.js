@@ -74,7 +74,7 @@ const UserRoute = ({ children }) => {
                 <a>Dashboard</a>
               </Link>
             </Menu.Item>
-            <Menu.Item key="cashflow" icon={<PieChartOutlined />}>
+            {/* <Menu.Item key="cashflow" icon={<PieChartOutlined />}>
               <Link href="/user/cashflow">
                 <a>Cashflow</a>
               </Link>
@@ -83,7 +83,7 @@ const UserRoute = ({ children }) => {
               <Link href="/user/history">
                 <a>History</a>
               </Link>
-            </Menu.Item>
+            </Menu.Item> */}
             <SubMenu key="submenu" icon={<SettingOutlined />} title={
               <span>
                 <span>Administration</span>
