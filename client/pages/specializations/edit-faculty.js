@@ -46,7 +46,6 @@ const editfaculty = () => {
                 toast('Error deleting faculty. Try again.')
             }
         }
-
     }
 
     return (

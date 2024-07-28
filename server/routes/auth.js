@@ -11,6 +11,8 @@ import {
     getusers,
     getuser,
     updateuser,
+    getstudents,
+    removeuser,
 
     getfaculties,
     addfaculty,
@@ -27,6 +29,12 @@ import {
     
     addcourse,
     getcourses,
+
+    enrollstudents,
+    getstudcourse,
+    getstudgrades,
+    addgrade,
+    getgrades,
 }
 from "../controllers/auth";
 import { requireSignin } from "../middlewares";
@@ -39,6 +47,7 @@ router.get("/current-user", requireSignin, currentUser);
 router.get("/getusers", getusers);
 router.get("/getuser/:id", getuser);
 router.put("/updateuser/:id", updateuser);
+router.get("/getstudents", getstudents);
 
 router.get("/getfaculties", getfaculties);
 router.post("/addfaculty", addfaculty);
@@ -55,6 +64,14 @@ router.get("/getteachers", getteachers);
 
 router.post("/addcourse", addcourse);
 router.get("/getcourses", getcourses);
+
+router.post("/enrollstudents", enrollstudents)
+
+router.get("/getstudcourse/:id", getstudcourse)
+router.get("/getstudgrades/:id", getstudgrades)
+router.post("/addgrade", addgrade)
+router.get("/getgrades", getgrades)
+router.delete("/remove-user/:id", removeuser)
 
 
 

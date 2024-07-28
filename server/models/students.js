@@ -41,6 +41,13 @@ const studentSchema = new Schema(
             type: String,
             trim: true,
             default:"Budget"
+        },
+        courses: {
+            type: [Schema.Types.ObjectId],
+            trim: true
+        },
+        specialization: {
+            type: String,
         }
 
     },

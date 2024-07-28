@@ -3,6 +3,7 @@ import Student from "../models/students";
 import Faculty from "../models/faculty";
 import Specialization from "../models/specializations";
 import Course from "../models/courses";
+import Grades from "../models/grades";
 import { hashPassword, comparePassword } from "../utils/auth";
 import jwt from "jsonwebtoken";
 import AWS from "aws-sdk";
@@ -89,9 +90,9 @@ export const register = async (req, res) => {
 export const currentUser = async (req, res) => {
   try {
     const user = await Users.findById(req.auth._id).select("-password").exec();
+    const stud = await Student.findById(user.studId).exec()
     console.log("CURRENT_USER", user);
-    //const infos = await 
-    return res.json({ ok: true, user });
+    return res.json({ ok: true, user, stud});
   } catch (err) {
     console.log(err);
   }
@@ -110,7 +111,8 @@ export const getuser = async (req, res) => {
   try {
     const user = await Users.findById(req.params.id).select("-password").exec()
     const stud = await Student.findById(user.studId).exec()
-    return res.json({ user, stud })
+    const specializations = await Specialization.find().exec()
+    return res.json({ user, stud, specializations })
   } catch (err) {
     console.log(err);
   }
@@ -137,6 +139,7 @@ export const updateuser = async (req, res) => {
         postalCode: 123456,
         phone: "123456789",
         statut: req.body.statut,
+        specialization: req.body.specialization
       });
       await newStudent.save();
       user.studId = newStudent._id;
@@ -149,7 +152,8 @@ export const updateuser = async (req, res) => {
         student.county = req.body.county,
         student.postalCode = req.body.postalCode,
         student.phone = req.body.phone,
-        student.statut = req.body.statut
+        student.statut = req.body.statut,
+        student.specialization = req.body.specialization
       await student.save()
     }
     return res.json({ ok: true })
@@ -391,3 +395,163 @@ export const deletefaculty = async (req, res) => {
     console.log(err);
   }
 }
+
+export const getstudents = async (req, res) => {
+  try {
+    const student = await Users.find({ role: "Student" }).exec()
+    const students = []
+    const courses = []
+    for (let element in student) {
+      const studinfo = await Student.findById(student[element].studId.toString()).exec()
+      students.push({
+        _id: student[element]._id,
+        fullname: student[element].name + ' ' + student[element].lastName,
+        email: student[element].email,
+        role: student[element].role,
+        name: student[element].name,
+        lastName: student[element].lastName,
+        specialization: studinfo.specialization,
+        courses: studinfo.courses
+      })
+    }
+    return res.json({ students })
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export const enrollstudents = async (req, res) => {
+  try {
+    for (let element in req.body.studID) {
+      const user = await Users.findById(req.body.studID[element]).exec()
+      const studinfo = await Student.findById(user.studId).exec()
+      if (studinfo.courses.indexOf(req.body.courseID) === -1) {
+        studinfo.courses.push(req.body.courseID)
+        await studinfo.save()
+        console.log("student enrolled")
+      }
+    }
+    return res.json({ ok: true })
+  }
+  catch (err) {
+    console.log(err);
+  }
+}
+
+export const getstudcourse = async (req, res) => {
+  try {
+    const student = await Users.findById(req.params.id).exec()
+    const studcourses = []
+    const courses = []
+    //for (let element in student) {
+    const studinfo = await Student.findById(student.studId.toString()).exec()
+    for (let index in studinfo.courses) {
+      const courseinfo = await Course.findById(studinfo.courses[index]).exec()
+      courses.push({
+        name: courseinfo.name,
+        year: courseinfo.year,
+        semester: courseinfo.semester,
+      })
+    }
+    studcourses.push({
+      _id: student._id,
+      fullname: student.name + ' ' + student.lastName,
+      email: student.email,
+      role: student.role,
+      name: student.name,
+      lastName: student.lastName,
+      specialization: studinfo.specialization,
+      courses: studinfo.courses,
+      coursesname: courses
+    })
+    //}
+    return res.json({ studcourses })
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export const getstudgrades = async (req, res) => {
+  try {
+    const student = await Users.findById(req.params.id).exec()
+    const studgrades = []
+    const grades = []
+    const courses = []
+  }
+  catch (err) {
+    console.log(err);
+  }
+}
+
+export const addgrade = async (req, res) => {
+  try {
+    const student = await Users.findById(req.body.studID).exec()
+    const course = await Course.findById(req.body.courseID).exec()
+    const grade = new Grades({
+      courseID: req.body.courseID,
+      studentID: req.body.studID,
+      grade: req.body.grade
+    })
+    await grade.save()
+    console.log(grade)
+    return res.json({ ok: true })
+  }
+  catch (err) {
+    console.log(err)
+  }
+}
+
+export const getgrades = async (req, res) => {
+  try {
+    const grades = await Grades.find().exec()
+    const students = []
+    const gradeslist = []
+    for (let element in grades) {
+      const course = await Course.findById(grades[element].courseID.toString()).exec()
+      const student = await Users.findById(grades[element].studentID.toString()).exec()
+      const studinfo = await Student.findById(student.studId.toString()).exec()
+      const teacher = await Users.findById(course.teacherId.toString()).exec()
+      gradeslist.push({
+        _id: grades[element]._id,
+        courseID: grades[element].courseID,
+        studentID: grades[element].studentID,
+        grade: grades[element].grade,
+        student: students[element],
+        coursename: course.name,
+        courseyear: course.year,
+        coursesemester: course.semester,
+        studentname: student.name + ' ' + student.lastName,
+        studentspecialization: studinfo.specialization,
+        teachername: teacher.name + ' ' + teacher.lastName
+      })
+    }
+    return res.json({ gradeslist })
+}
+  catch (err) {
+    console.log(err);
+  }
+}
+
+export const removeuser = async(req, res) =>{
+  try{
+    const user = await Users.findById(req.params.id).exec()
+    const courses= await Course.find({teacherId: user._id})
+    if(user.role == "Student"){
+      const studinfo = await Student.findById(user.studId).exec()
+      await studinfo.remove()
+    }
+    if(courses)
+    {
+      for(let element in courses){
+        await courses[element].remove()
+      }
+    }
+    await user.remove()      
+  }
+  catch(err){
+    console.log(err);
+  }
+}
+
+
+

@@ -1,5 +1,5 @@
 import UserRoute from "../../components/routes/UserRoute"
-import { Layout, Table } from "antd"
+import { Layout, Table, Select, Form } from "antd"
 import { useEffect, useState } from "react"
 import { useRouter } from "next/router"
 import axios from "axios"
@@ -12,6 +12,8 @@ const { Header, Footer, Content } = Layout
 const manageuser = () => {
     let [user, setUser] = useState([]);
     let [stud, setStud] = useState([]);
+    const [specializations, setSpecializations] = useState([]);
+    const [options, setOptions] = useState([]);
 
     const router = useRouter()
 
@@ -27,6 +29,7 @@ const manageuser = () => {
         const { data } = await axios.get(`/api/getuser/${id}`)
         setUser(data.user)
         setStud(data.stud)
+        setSpecializations(data.specializations)
     }
 
     function getBDate(date) {
@@ -46,8 +49,7 @@ const manageuser = () => {
         const urlParams = new URLSearchParams(window.location.search);
         const id = urlParams.get('id');
 
-        if(user.role == "Student")
-        {
+        if (user.role == "Student") {
             const { data } = await axios.put(`/api/updateuser/${id}`, {
                 name: document.getElementById("ufname").value,
                 lastName: document.getElementById("ulname").value,
@@ -60,7 +62,8 @@ const manageuser = () => {
                 pi: document.getElementById("spi").value,
                 birthDate: document.getElementById("sbirthdate").value,
                 statut: document.getElementById("sstatut").value,
-                phone: document.getElementById("sphone").value
+                phone: document.getElementById("sphone").value,
+                specialization: options,
             })
             if (data.error) {
                 toast.error(data.error)
@@ -70,8 +73,7 @@ const manageuser = () => {
                 router.back()
             }
         }
-        else
-        {
+        else {
             const { data } = await axios.put(`/api/updateuser/${id}`, {
                 name: document.getElementById("ufname").value,
                 lastName: document.getElementById("ulname").value,
@@ -127,36 +129,36 @@ const manageuser = () => {
                                             <div className="form-group">
                                                 <label>Roles</label>
                                                 <select id="urole" className="form-control">
-                                                    { (user.role == "User") && (
+                                                    {(user.role == "User") && (
                                                         <>
-                                                        <option id="1" selected>User</option>
-                                                        <option id="2">Student</option>
-                                                        <option id="3">Teacher</option>
-                                                        <option id="4">Admin</option>
+                                                            <option id="1" selected>User</option>
+                                                            <option id="2">Student</option>
+                                                            <option id="3">Teacher</option>
+                                                            <option id="4">Admin</option>
                                                         </>
                                                     )}
-                                                    { (user.role == "Student") && (
+                                                    {(user.role == "Student") && (
                                                         <>
-                                                        <option id="1">User</option>
-                                                        <option id="2" selected>Student</option>
-                                                        <option id="3">Teacher</option>
-                                                        <option id="4">Admin</option>
+                                                            <option id="1">User</option>
+                                                            <option id="2" selected>Student</option>
+                                                            <option id="3">Teacher</option>
+                                                            <option id="4">Admin</option>
                                                         </>
                                                     )}
-                                                    { (user.role == "Teacher") && (
+                                                    {(user.role == "Teacher") && (
                                                         <>
-                                                        <option id="1">User</option>
-                                                        <option id="2">Student</option>
-                                                        <option id="3" selected>Teacher</option>
-                                                        <option id="4">Admin</option>
+                                                            <option id="1">User</option>
+                                                            <option id="2">Student</option>
+                                                            <option id="3" selected>Teacher</option>
+                                                            <option id="4">Admin</option>
                                                         </>
                                                     )}
-                                                    { (user.role == "Admin") && (
+                                                    {(user.role == "Admin") && (
                                                         <>
-                                                        <option id="1">User</option>
-                                                        <option id="2">Student</option>
-                                                        <option id="3">Teacher</option>
-                                                        <option id="4" selected>Admin</option>
+                                                            <option id="1">User</option>
+                                                            <option id="2">Student</option>
+                                                            <option id="3">Teacher</option>
+                                                            <option id="4" selected>Admin</option>
                                                         </>
                                                     )}
                                                 </select>
@@ -228,8 +230,31 @@ const manageuser = () => {
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div className="row">
+                                                <div className="col-md-6 pr-1">
+                                                    <div className="form-group">
+                                                        <label>Specialization</label>
+                                                        <Select
+                                                            id="sspecialization"
+                                                            placeholder="Select Specialization"
+                                                            onChange={(e) => setOptions(e)}
+                                                            showSearch
+                                                            defaultValue={stud.specialization}
+                                                            style={{ width: '50%' }}
+                                                            filterOption={(input, option) =>
+                                                                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                                                            }
+                                                        >
+                                                            {
+                                                                specializations.map((s) => (
+                                                                    <Select.Option key={s.name} value={s.name}>{s.name}</Select.Option>
+                                                                ))
+                                                            }
 
-
+                                                        </Select>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </>
                                 )}

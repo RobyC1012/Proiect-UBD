@@ -12,6 +12,7 @@ const Dashboard = () => {
 
     const router = useRouter();
     const [user, setUser] = useState({});
+    const [student, setStudent] = useState({});
 
     useEffect(() => {
         fetchUser();
@@ -21,6 +22,7 @@ const Dashboard = () => {
         try {
             const { data } = await axios.get("/api/current-user");
             setUser(data.user);
+            setStudent(data.stud);
         } catch (err) {
             console.log(err);
             router.push("/login");
@@ -60,10 +62,52 @@ const Dashboard = () => {
                                         </div>
                                     </div>
                                 </div>
+                                {
+                                    student && (
+                                        <>
+                                <div className="card-header">
+                                    <h5 className="card-title">Student Informations</h5>
+                                </div>
+                                <div className="card-body">
+                                    <div className="row">
+                                        <div className="col-md-6">
+                                            <div className="form-group">
+                                                <label className="bmd-label-floating">Address: {student.address}</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-md-6">
+                                            <div className="form-group">
+                                                <label className="bmd-label-floating">City: {student.city}</label>
+                                            </div>
+                                        </div>
+                                        <div className="col-md-6">
+                                            <div className="form-group">
+                                                <label className="bmd-label-floating">County: {student.county}</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="row">
+                                        <div className="col-md-6">
+                                            <div className="form-group">
+                                                <label className="bmd-label-floating">Status: {student.statut}</label>
+                                            </div>
+                                        </div>
+                                        <div className="col-md-6">
+                                            <div className="form-group">
+                                                <label className="bmd-label-floating">Specialization: {student.specialization}</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </>
+                                    )
+                                }
                             </div>
                         </div>
                     </div>
-
                 </Content>
             </UserRoute>
         </Layout>

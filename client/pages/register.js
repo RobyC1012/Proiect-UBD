@@ -52,7 +52,7 @@ const Index = () => {
     return (
         <main className="loginf">
             <div className="login-form2">
-                <h1> Register </h1>
+                <h3 style={{fontSize: 14}}> Register a user</h3>
                 <hr></hr>
                 <div>
                     <form onSubmit={handleSubmit}>

@@ -13,21 +13,21 @@ const courseSchema = new Schema(
             type: Number,
             required: true,
         },
-        year:{
+        year: {
             type: Number,
             required: true,
         },
-        specializationId:{
+        specializationId: {
             type: Schema.Types.ObjectId,
             ref: "Specialization",
             required: true,
         },
-        teacherId:{
+        teacherId: {
             type: Schema.Types.ObjectId,
             ref: "User",
             required: true,
         }
-        
-});
+
+    });
 
 export default mongoose.model("Course", courseSchema);

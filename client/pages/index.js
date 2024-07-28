@@ -15,8 +15,8 @@ const Index = () => {
                 <TopNav />
                 <div className="main-page">
                     <div className = "main-text">
-                        <h1> Some text here </h1>
-                        <p> Online grading platform </p> 
+                        <h1> Online Grading System </h1>
+                        <p> See your courses and grades online </p> 
                         <button className = "btn btn-block btn-primary" onClick={() => router.push("/login")}> Login Here</button>
                     </div>
                     <div className = "main-div">
